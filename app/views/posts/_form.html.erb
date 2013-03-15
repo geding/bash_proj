@@ -1,0 +1,19 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+    <%= f.input :author %>
+
+    <%= f.input :content %>
+
+    <%= f.input :likes %>
+
+    <%= f.input :dislikes %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
