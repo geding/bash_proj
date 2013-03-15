@@ -1,7 +1,10 @@
 class PostsController < ApplicationController
+  #before_filter :authenticate_user!  #turn on devise, 
+load_and_authorize_resource
   # GET /posts
   # GET /posts.json
   def index
+   # authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @posts = Post.all
 
     respond_to do |format|
@@ -24,11 +27,14 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
+   
+    @users = User.all
     @post = Post.new
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }
+
     end
   end
 
