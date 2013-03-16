@@ -1,6 +1,10 @@
 BashProj::Application.routes.draw do
-  resources :posts
-
+  resources :posts do
+    member do
+      get :addlike
+      get :adddislike
+    end
+  end
 
   authenticated :user do
     root :to => 'home#index'
