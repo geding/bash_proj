@@ -3,13 +3,13 @@ class Ability
 
   def initialize(user)
     alias_action :index, :show, :to => :read
-    alias_action :new, :to => :create
+    alias_action :new, :read, :to => :create
     alias_action :edit, :to => :update
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
     else 
-        can :read, Post
+        can :create, Post
 
         
     end

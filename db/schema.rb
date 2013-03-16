@@ -11,15 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315210607) do
+ActiveRecord::Schema.define(:version => 20130316103736) do
+
+  create_table "likes", :force => true do |t|
+    t.integer  "like_value"
+    t.string   "send_by_ip"
+    t.integer  "post_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "posts", :force => true do |t|
     t.string   "author"
     t.text     "content"
-    t.integer  "likes"
-    t.integer  "dislikes"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "likes",      :default => 0
+    t.integer  "dislikes",   :default => 0
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "aproved",    :default => false
   end
 
   create_table "roles", :force => true do |t|
