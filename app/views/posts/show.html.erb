@@ -20,7 +20,7 @@
   <%= @post.dislikes_n %>
 </p>
 
-<% if can? :create, Post %>
+<% if can? :manage, Post %>
   <%= link_to 'Edit', edit_post_path(@post) %> |
 <% end %>
 <%= link_to 'Back', posts_path %>

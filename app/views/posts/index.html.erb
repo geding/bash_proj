@@ -53,6 +53,11 @@
     
         <a href = "/posts/<%= post.id %>/adddislike">
       <li>  <button class="btn btn-small btn btn-danger" type="button"><%= post.dislikes_n %></button></a> </li>
+       <% if can? :create, Post %>
+      <li>  
+      <%= link_to 'Show', post %> 
+       </li>
+         <% end %>
       <% if params[:view] == "approve" %>
        <li><%= link_to 'Edit', edit_post_path(post) %></li>
        <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></li>
