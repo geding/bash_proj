@@ -5,7 +5,7 @@ load_and_authorize_resource
   # GET /posts.json
   def index
     
-    @posts = Post.where(:approved => nil).all #approved
+    @posts = Post.where(:approved => 0).all #approved
     if params[:view] == "top10"
         @posts = Post.where(:approved => 1).order("likes_n DESC").limit(10) #approved
       end
