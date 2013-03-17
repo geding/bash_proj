@@ -9,7 +9,7 @@ load_and_authorize_resource
     if params[:view] == "top10"
         @posts = Post.where(:approved => 1).order("likes_n DESC").limit(10) #approved
       end
-    if params[:view] == "approve" && can? :manage     
+    if (params[:view] == "approve") && (can? :manage)     
           @posts = Post.where(:approved => 0) #approved
       end
     respond_to do |format|
