@@ -64,7 +64,7 @@ def addlike
   @like = Like.find_or_initialize_by_post_id_and_send_by_ip(@post.id, @ip ) #create_by
  
   @like.addlike(@post, @ip)
-redirect_to posts_url
+redirect_to :back
 end
 # GET /posts/1/adddislike
 def adddislike
@@ -72,7 +72,7 @@ def adddislike
   @post_id = Post.find(params[:id]).id
   @like = Like.find_or_initialize_by_post_id_and_send_by_ip(@post_id, @ip ) #create_by
   @like.adddislike(@post_id, @ip)
-redirect_to posts_url
+redirect_to :back
 end
 
   # POST /posts
