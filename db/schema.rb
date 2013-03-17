@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20130316194717) do
     t.integer  "dislikes_n", :null => false,:default => 0
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.boolean  "aproved"
+    t.boolean  "approved", :null => false,:default => 0
     
   end
 

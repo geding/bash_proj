@@ -5,11 +5,13 @@ class Ability
     alias_action :index, :show, :addlike, :adddislike, :to => :read
     alias_action :new, :read, :to => :create
     alias_action :edit, :to => :update
-    user ||= User.new # guest user (not logged in)
+    user ||= User.new() # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
-    else 
+    elsif user.has_role? :user
         can :create, Post
+    else 
+        can :read, Post
 
         
     end

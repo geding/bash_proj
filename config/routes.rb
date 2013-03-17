@@ -6,6 +6,7 @@ BashProj::Application.routes.draw do
     end
   end
 
+
   authenticated :user do
     root :to => 'home#index'
   end

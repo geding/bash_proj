@@ -1,4 +1,7 @@
+<%= stylesheet_link_tag "posts" %>
 <h1>Listing posts</h1>
+
+
 
 <table>
   <tr>
@@ -6,6 +9,7 @@
     <th>Content</th>
     <th>Likes</th>
     <th>Dislikes</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,9 +26,49 @@
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
     <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+
 <% end %>
 </table>
 
 <br />
+<% @posts.each do |post| %>
+ <!-- <blockquote>
+  <p><%= post.content %></p>
+   <small>sended by: <%= post.author %>  </small>
 
+  </blockquote>
+
+  <ul class="inline">
+  <li>  <button class="btn btn-small btn btn-success" type="button"><%= post.likes_n %></button></li>
+  <li>  <button class="btn btn-small btn btn-danger" type="button"><%= post.dislikes_n %></button></li>
+  </ul> -->
+ <ul class="media-list">
+  <li class="media">
+    <div class="pull-left">
+      <ul class="inline">
+      <li>
+      <a href = "/posts/<%= post.id %>/addlike">
+       <button class="btn btn-small btn btn-success" type="button">
+
+        <%= post.likes_n %></button>  </a></li>
+    
+        <a href = "/posts/<%= post.id %>/adddislike">
+      <li>  <button class="btn btn-small btn btn-danger" type="button"><%= post.dislikes_n %></button></a> </li>
+      
+      </ul>
+
+    </div>
+    <div class="media-body">
+      
+             <blockquote>
+  <p><%=simple_format(post.content) %></p>
+   <small>sended by: <%= post.author %>  </small>
+
+  </blockquote>
+    
+    </div>
+  </li>
+</ul>
+<% end %>
+<br />
 <%= link_to 'New Post', new_post_path %>

@@ -20,8 +20,9 @@
   <%= @post.dislikes_n %>
 </p>
 
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<% if can? :create, Post %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
 <%= link_to 'Back', posts_path %>
 <%= link_to 'Add like', { :action => "addlike" }  %>
 <%= link_to 'Add dislike', { :action => "adddislike" }  %>
