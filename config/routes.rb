@@ -3,6 +3,7 @@ BashProj::Application.routes.draw do
     member do
       get :addlike
       get :adddislike
+      get :approve
     end
   end
 

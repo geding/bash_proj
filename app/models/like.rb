@@ -3,9 +3,7 @@ class Like < ActiveRecord::Base
   attr_accessible :like_value, :send_by_ip, :post_id,
   :dislikes_n, :likes_n
   
-  def self.getLikes(post_id)
-
-  end
+  
 
   def addlike(post, ip)
     self.post_id = post.id

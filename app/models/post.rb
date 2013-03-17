@@ -1,15 +1,17 @@
 class Post < ActiveRecord::Base
-resourcify
-rolify
+
+
   belongs_to :user
   has_many :likes
-  after_initialize :init
+  # after_initialize :init
 
-    def init
+  #   def init
 
-    end
+  #   end
 
-
-  attr_accessible :author, :content, :dislikes_n, :likes_n, :name
+def approve
+ update_attributes(:approved =>true)
+end
+  attr_accessible :author, :content, :dislikes_n, :likes_n, :name, :approved
   
 end

@@ -1,9 +1,9 @@
 <%= stylesheet_link_tag "application" %>
-<h1>Listing posts</h1>
+<!-- <h1>Listing posts</h1> -->
 
 
 
-<table>
+<!-- <table>
   <tr>
     <th>Author</th>
     <th>Content</th>
@@ -23,12 +23,11 @@
      <td><%= post.likes_n %></td>
     <td><%= post.dislikes_n %></td>
     <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    
   </tr>
 
 <% end %>
-</table>
+</table> -->
 
 <br />
 <% @posts.each do |post| %>
@@ -54,8 +53,13 @@
     
         <a href = "/posts/<%= post.id %>/adddislike">
       <li>  <button class="btn btn-small btn btn-danger" type="button"><%= post.dislikes_n %></button></a> </li>
-      
+      <% if params[:view] == "approve" %>
+       <li><%= link_to 'Edit', edit_post_path(post) %></li>
+       <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+       <li><%= link_to 'Approve', approve_post_path(post) %></li>
+       <% end %>
       </ul>
+
 
     </div>
     <div class="media-body">
@@ -71,4 +75,4 @@
 </ul>
 <% end %>
 <br />
-<%= link_to 'New Post', new_post_path %>
+

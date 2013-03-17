@@ -5,12 +5,12 @@ load_and_authorize_resource
   # GET /posts.json
   def index
     
-    @posts = Post.where(:approved => 0).all #approved
+    @posts = Post.where(:approved => true ).all #approved
     if params[:view] == "top10"
-        @posts = Post.where(:approved => 1).order("likes_n DESC").limit(10) #approved
+        @posts = Post.where(:approved => true).order("likes_n DESC").limit(10) #approved
       end
-    if (params[:view] == "approve") && (can? :manage)     
-          @posts = Post.where(:approved => 0) #approved
+    if (params[:view] == "approve") && (current_user.has_role? :admin)     
+          @posts = Post.where(:approved => false) #approved
       end
     respond_to do |format|
       format.html # index.html.erb
@@ -30,6 +30,11 @@ load_and_authorize_resource
     end
   end
 
+  def approve
+  @post = Post.find(params[:id])
+  @post.approve
+  redirect_to :back
+  end
 
   # GET /posts/new
   # GET /posts/new.json
