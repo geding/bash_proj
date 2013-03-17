@@ -7,26 +7,32 @@ class Like < ActiveRecord::Base
 
   def addlike(post, ip)
     self.post_id = post.id
+
+    post.record_timestamps=false
    if self.like_value == -1 #dislike
       post.update_attributes(:likes_n=> post.likes_n + 1, :dislikes_n => post.dislikes_n- 1)    
     elsif self.like_value == 0 #nothing
          post.update_attributes(:likes_n=> post.likes_n + 1)
     end
+    post.record_timestamps=true
     self.like_value = 1
 
     
     self.send_by_ip = ip
+
     self.save
 
   end
   def adddislike(post_id,ip)
     self.post_id = post_id
+     post.record_timestamps=false
    if self.like_value == 1 #like
       post.update_attributes(:likes_n=> post.likes_n - 1, :dislikes_n => post.dislikes_n+ 1)    
     elsif self.like_value == 0 #nothing
          post.update_attributes(:dislikes_n=> post.dislikes_n + 1)
     end
     self.like_value = -1
+    post.record_timestamps=true
     
 
     self.send_by_ip = ip
